@@ -15,7 +15,7 @@
 ---
 
 La commande permettant de retrouver de quel paquet vient une commande est ```dpkg -S ls```
-On peut donc crée ce script
+On peut donc crée ce script:
 
 ```
 #!/bin/bash
@@ -28,7 +28,12 @@ which -a  $1 | xargs dpkg -S 2>/dev/null | cut -f1 -d
 ## Exercice 3
 ---
 
+Ecrire une commande qui affiche “INSTALLÉ” ou “NON INSTALLÉ” selon le nom et le statut du package
+spécifié dans cette commande.
+
+dpkg -l test | grep "^ii" && echo "INSTALLE" || echo "NON INSTALLE"
 ``` 
+#!/bin/bash
 {
   pkg -L $1 > /dev/null 2>&1 &&
   echo "INSTALLER"
@@ -39,4 +44,5 @@ which -a  $1 | xargs dpkg -S 2>/dev/null | cut -f1 -d
 ## Exercice 4
 ---
 
+Il faut utiliser ```dpkg -L coreutils``` pour voir ce qui a été installé par coreutils. Le "[" est l'expression de test
 
